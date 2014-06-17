@@ -3915,11 +3915,11 @@ for b_dsFiledKey in inputGroupFilesMap.keys():
                             param += '--dbrRun %s ' % options.dbRunNumber
             # random seed
             for tmpItem in tmpJobO.split():
-                match = re.search('%RNDM=(\d+)( |$|\'|\"|;)',tmpItem)
+                match = re.search('%RNDM=(\d+)%{0,1}',tmpItem)
                 if match:
                     tmpRndmNum = int(match.group(1)) + iSubJob
                     # replace parameters
-                    tmpJobO = re.sub(match.group(0),'%s%s' % (tmpRndmNum,match.group(2)),tmpJobO)
+                    tmpJobO = re.sub(match.group(0),'%s' % tmpRndmNum,tmpJobO)
             # skipEvent
             tmpUseSkipEventsInTrf = False
             for tmpItem in tmpJobO.split():
